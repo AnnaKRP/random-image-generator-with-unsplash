@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Rakkas&display=swap');
+
+body {
+    background-color: #F8EDE3;
+    color: #C5705D;
+    font-family: "Amita", serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ranImg {
+    max-height: 500px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 56px; 
+    margin: 0;
+}
+
+p {
+    margin-top: 0;
+    padding: 2px 5px;
+    margin: 2px;
+    font-size: 18px;
+}
+
+#creator, #likes {
+    color: #F8EDE3; 
+}
+
+.imageDetails {
+    background-color: #C5705D;
+    padding: 10px 30px;
+    color: #F8EDE3; 
+    width: fit-content;
+    border-radius: 10px;
+    min-width: 30%;
+    border: #C5705D solid 3px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.imageDetails button {
+    font-size: 36px;
+    font-weight: bold;
+    width: 70px;
+    height: 70px;
+    background-color: #C5705D;
+    color: #F8EDE3;
+    border: #F8EDE3 solid 2px;
+    border-radius: 50%;
+    transition: transform 300ms ease; 
+}
+
+.imageDetails button:hover {
+    animation: spin 1s linear infinite;
+}

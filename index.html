@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Image</title>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+</head>
+
+<body>
+    <h1>Random Image Generator</h1>
+    <p>Press on the image to see it on the web.</p>
+
+    <div class="imageContainer">
+        <a id="imgLink" href="#">
+            <img alt="Random image" id="ranImg" src=""/>
+        </a>
+    </div>
+    
+    <div class="imageDetails">
+        <p>Photo by <b><span id="creator">NAME</span></b></p>
+        <p>Likes: <b><span id="likes">0</span></b></p>
+        <button id="refreshButton"> ↻ </button>
+    </div>
+
+    <script>
+        let clientID = 'SECRET_API';
+        let endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}`;
+        
+        // Selecting necessary elements
+        let imgElement = document.querySelector("#ranImg");
+        let imgLink = document.querySelector("#imgLink");
+        let creator = document.querySelector("#creator");
+        let likes = document.querySelector("#likes");
+        let refreshButton = document.querySelector("#refreshButton");
+
+        function fetchImage() {
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(jsonData => {
+                    console.log(jsonData); // Check the structure here
+                    imgElement.src = jsonData.urls.regular;
+                    imgLink.setAttribute("href", jsonData.links.html);
+
+                    // Update these based on actual JSON structure
+                    creator.innerHTML = jsonData.user.name;
+                    likes.innerHTML = jsonData.likes;
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        }
+
+        // Fetch image when the button is clicked
+        refreshButton.addEventListener("click", fetchImage);
+        
+        // Load the first image on page load
+        fetchImage();
+    </script>
+</body>
+
+</html>
