@@ -14,9 +14,10 @@ body {
     max-height: 500px;
     max-width: 100%;
     border-radius: 10px;
-    margin: 20px;
+    margin: 20px auto;  
+    display: block;    
     box-shadow: 5px 5px 3px #66392e;
-  }
+}
 
   h1 {
     font-size: 56px;
@@ -50,11 +51,16 @@ body {
     width: 70px;
     height: 70px;
     background-color: #C5705D;
-    color:#F8EDE3;
+    color: #F8EDE3;
     border: #F8EDE3 solid 2px;
     border-radius: 50%;
     transition: 300ms ease all;
-  }
+    display: flex;            
+    align-items: center;     
+    justify-content: center; 
+    margin-left: auto;
+    margin-right: auto;
+}
 
   button:hover {
     animation: rotateInfinite 2s linear infinite;
