@@ -1,0 +1,18 @@
+{
+  "name": "random-image-generator-with-unsplash",
+  "version": "1.0.0",
+  "description": "This web app allows users to view random, high-quality images from the Unsplash API. Each time the page loads or the refresh button is clicked, a new image is fetched from Unsplash's vast collection of stunning photography. The app also displays the image creator's name and the total likes they’ve received. Clicking on the image or the creator's name takes users directly to the source on Unsplash, providing an interactive experience to explore more works by the photographer.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "node-fetch": "^3.3.2"
+  }
+}

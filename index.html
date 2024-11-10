@@ -1,64 +1,60 @@
 <!DOCTYPE html>
+
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Random Image</title>
+        <link rel="stylesheet" href="/main.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Image</title>
-    <link rel="stylesheet" type="text/css" href="./main.css">
-</head>
-
-<body>
-    <h1>Random Image Generator</h1>
-    <p>Press on the image to see it on the web.</p>
-
-    <div class="imageContainer">
-        <a id="imgLink" href="#">
-            <img alt="Random image" id="ranImg" src=""/>
-        </a>
-    </div>
-    
-    <div class="imageDetails">
-        <p>Photo by <b><span id="creator">NAME</span></b></p>
-        <p>Likes: <b><span id="likes">0</span></b></p>
-        <button id="refreshButton"> ↻ </button>
-    </div>
-
-    <script>
-        let clientID = 'SECRET_API';
-        let endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}`;
+    <body>
+        <h1>Random Image Generator</h1>
+        <p>Press on the image to see it on the web.</p>
         
-        // Selecting necessary elements
-        let imgElement = document.querySelector("#ranImg");
-        let imgLink = document.querySelector("#imgLink");
-        let creator = document.querySelector("#creator");
-        let likes = document.querySelector("#likes");
-        let refreshButton = document.querySelector("#refreshButton");
+        <div class="imageContainer">
+            <a id="imgLink" href="#"><img alt="" id="ranImg" src="" /></a>
+        </div>
 
-        function fetchImage() {
-            fetch(endpoint)
-                .then(response => response.json())
-                .then(jsonData => {
-                    console.log(jsonData); // Check the structure here
-                    imgElement.src = jsonData.urls.regular;
-                    imgLink.setAttribute("href", jsonData.links.html);
+        <div class="imageDetails">
+            <p>Photo by <b><span id="creator">NAME</span></b></p>
+            <p>Likes: <b><span id="likes">0</span></b></p>
+            <button id="refreshButton"> ↻ </button>
+        </div>
 
-                    // Update these based on actual JSON structure
-                    creator.innerHTML = jsonData.user.name;
-                    likes.innerHTML = jsonData.likes;
-                })
-                .catch(error => {
-                    console.error('There has been a problem with your fetch operation:', error);
-                });
-        }
-
-        // Fetch image when the button is clicked
-        refreshButton.addEventListener("click", fetchImage);
+        <script>
+            // Function to fetch and display the image
+            function fetchImage() {
+                fetch('/api/random-image')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error fetching image data');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Update the image, link, creator, and likes
+                        document.getElementById('ranImg').src = data.url;
+                        document.getElementById('imgLink').href = data.link;
+                        document.getElementById('creator').textContent = data.creator;
+                        document.getElementById('likes').textContent = data.likes;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        // Display an error message to the user
+                        document.getElementById('ranImg').src = '';
+                        document.getElementById('imgLink').href = '#';
+                        document.getElementById('creator').textContent = 'Error loading image';
+                        document.getElementById('likes').textContent = 'N/A';
+                    });
+            }
         
-        // Load the first image on page load
-        fetchImage();
-    </script>
-</body>
-
+            // Event listener for the refresh button
+            document.getElementById('refreshButton').addEventListener('click', fetchImage);
+        
+            // Fetch an image on page load
+            fetchImage();
+        </script>
+        
+    </body>
 </html>

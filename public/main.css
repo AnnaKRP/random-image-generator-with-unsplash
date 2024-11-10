@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Rakkas&display=swap');
+
+body {
+    background-color: #F8EDE3;
+    color: #C5705D;
+    font-family: "Amita", serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #ranImg {
+    max-height: 500px;
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 5px 5px 3px #66392e;
+  }
+
+  h1 {
+    font-size: 56px;
+    margin: 0;
+  }
+
+  p {
+    margin-top: 0;
+    padding: 2px 5px;
+    margin: 2px;
+    font-size: 18px;
+  }
+
+  #creator, #likes {
+    color: #66392e;
+  }
+
+  .imageDetails {
+    margin-top: 14px;
+    padding: 10px 30px;
+    color: #C5705D;
+    width: fit-content;
+    border-radius: 10px;
+    min-width: 30%;
+    border: #C5705D solid 3px;
+  }
+
+  .imageDetails button {
+    font-size: 36px;
+    font-weight: bold;
+    width: 70px;
+    height: 70px;
+    background-color: #C5705D;
+    color:#F8EDE3;
+    border: #F8EDE3 solid 2px;
+    border-radius: 50%;
+    transition: 300ms ease all;
+  }
+
+  button:hover {
+    animation: rotateInfinite 2s linear infinite;
+  }
+  
+  @keyframes rotateInfinite {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+/* Media Queries for Responsiveness */
+
+/* For tablets */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 48px; 
+  }
+
+  p {
+      font-size: 16px; 
+  }
+
+  .imageDetails {
+      padding: 10px 15px;
+      min-width: 50%; 
+  }
+
+  .imageDetails button {
+      width: 60px; 
+      height: 60px; 
+      font-size: 28px; 
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  h1 {
+      font-size: 26px; 
+  }
+
+  p {
+      font-size: 14px; 
+  }
+
+  .imageContainer {
+      width: 80%; 
+  }
+
+  .imageDetails {
+      padding: 10px 10px; 
+      min-width: 80%; 
+  }
+
+  .imageDetails button {
+      width: 50px; 
+      height: 50px; 
+      font-size: 24px; 
+  }
+}
